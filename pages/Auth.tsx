@@ -6,6 +6,9 @@ interface AuthProps {
 
 export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
   const [isRegister, setIsRegister] = useState(false);
+  // Pre-fill with demo credentials for user convenience
+  const [email, setEmail] = useState('demo@mediastart.com');
+  const [password, setPassword] = useState('demo123456');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,6 +33,8 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
               <input 
                 type="email" 
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
                 placeholder="you@example.com"
               />
@@ -40,6 +45,8 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
               <input 
                 type="password" 
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
                 placeholder="••••••••"
               />
@@ -75,6 +82,11 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
                 {isRegister ? 'Sign In' : 'Create Account'}
               </button>
             </p>
+            {!isRegister && (
+               <p className="text-xs text-slate-400 mt-4">
+                 Demo Mode: Credentials pre-filled for instant access
+               </p>
+            )}
           </div>
         </div>
       </div>
